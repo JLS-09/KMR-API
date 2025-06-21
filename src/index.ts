@@ -1,4 +1,4 @@
-import Fastify, { FastifyReply, FastifyRequest } from "fastify";
+import Fastify from "fastify";
 import scheduleGitActions from "./git/gitActions";
 
 
@@ -10,19 +10,13 @@ const fastify = Fastify({
   },
 });
 
-fastify.post('/api/users', {
-  handler: async (request: FastifyRequest, reply: FastifyReply) => {
-    return reply.code(201).send("user created");
-  }
-})
-
 async function main() {
   await fastify.listen({
     port: 3000,
     host: "0.0.0.0"
   })
 
-  await scheduleGitActions();
+  scheduleGitActions();
 }
 
 ["SIGINT", "SIGTERM"].forEach((signal) => {

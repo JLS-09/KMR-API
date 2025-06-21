@@ -735,9 +735,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"KMR-API@workspace:.":
+"kmr-api@workspace:.":
   version: 0.0.0-use.local
-  resolution: "KMR-API@workspace:."
+  resolution: "kmr-api@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.29.0"
     "@prisma/client": "npm:^6.10.1"

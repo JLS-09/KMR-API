@@ -1,5 +1,5 @@
 {
-  "name": "KMR-API",
+  "name": "kmr-api",
   "packageManager": "yarn@4.9.1",
   "dependencies": {
     "@prisma/client": "^6.10.1",

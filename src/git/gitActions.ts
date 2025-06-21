@@ -1,9 +1,10 @@
 import { existsSync } from "node:fs";
 import { simpleGit, SimpleGit, CleanOptions } from 'simple-git';
+import { scheduleJob } from "node-schedule";
 
 const git: SimpleGit = simpleGit().clean(CleanOptions.FORCE);
 
-export default async function performGitActions() {
+async function performGitActions() {
   try {
     if (!existsSync("./public/ckan-meta")) {
       console.log('Cloning repository...');
@@ -17,4 +18,8 @@ export default async function performGitActions() {
   } catch (error) {
       console.error('Error cloning repository:', error.message);
   }
+}
+
+export default function scheduleGitActions() {
+  scheduleJob('*/5 * * * *', performGitActions);
 }

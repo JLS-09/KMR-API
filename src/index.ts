@@ -1,5 +1,5 @@
 import Fastify, { FastifyReply, FastifyRequest } from "fastify";
-import performGitActions from "./git/gitActions";
+import scheduleGitActions from "./git/gitActions";
 
 
 const fastify = Fastify({
@@ -22,7 +22,7 @@ async function main() {
     host: "0.0.0.0"
   })
 
-  await performGitActions();
+  await scheduleGitActions();
 }
 
 ["SIGINT", "SIGTERM"].forEach((signal) => {

@@ -1,4 +1,6 @@
 import Fastify, { FastifyReply, FastifyRequest } from "fastify";
+import performGitActions from "./git/gitActions";
+
 
 const fastify = Fastify({
   logger: {
@@ -19,6 +21,8 @@ async function main() {
     port: 3000,
     host: "0.0.0.0"
   })
+
+  await performGitActions();
 }
 
 ["SIGINT", "SIGTERM"].forEach((signal) => {

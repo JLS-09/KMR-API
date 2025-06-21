@@ -3,7 +3,8 @@
   "packageManager": "yarn@4.9.1",
   "dependencies": {
     "@prisma/client": "^6.10.1",
-    "fastify": "^5.4.0"
+    "fastify": "^5.4.0",
+    "pino-pretty": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -18,7 +19,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node index.js",
-    "dev": "ts-node src/index.ts"
+    "start": "node dist/index.js",
+    "dev": "tsx watch --env-file .env src/index.ts",
+    "migrate:dev": "prisma migrate dev"
   }
 }

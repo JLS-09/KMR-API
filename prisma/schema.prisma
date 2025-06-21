@@ -27,7 +27,6 @@ model Mod {
   localizations       Json?
 
   relationships       Relationship[] // A mod's outgoing relationships
-  replaced_by         ReplacedBy? @relation("replaced_by")
   replacement         ReplacedBy?
 }
 
@@ -114,8 +113,7 @@ model ReplacedBy {
   modIdentifier  String   @unique
   mod            Mod      @relation(fields: [modIdentifier], references: [identifier])
 
-  replacementIdentifier  String @unique
-  replacement    Mod      @relation("replaced_by", fields: [replacementIdentifier], references: [identifier])
+  name           String
 
   version        String?
   min_version    String?

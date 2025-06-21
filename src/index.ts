@@ -1,15 +1,32 @@
-import fastify from 'fastify'
+import Fastify, { FastifyReply, FastifyRequest } from "fastify";
 
-const server = fastify()
+const fastify = Fastify({
+  logger: {
+    transport: {
+      target: "pino-pretty",
+    },
+  },
+});
 
-server.get('/ping', async (request, reply) => {
-  return 'pong\n'
-})
-
-server.listen({ port: 8080 }, (err, address) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
+fastify.post('/api/users', {
+  handler: async (request: FastifyRequest, reply: FastifyReply) => {
+    return reply.code(201).send("user created");
   }
-  console.log(`Server listening at ${address}`)
 })
+
+async function main() {
+  await fastify.listen({
+    port: 3000,
+    host: "0.0.0.0"
+  })
+}
+
+["SIGINT", "SIGTERM"].forEach((signal) => {
+  process.on(signal, async () => {
+    await fastify.close()
+
+    process.exit(0);
+  })
+})
+
+main();

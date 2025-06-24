@@ -18,6 +18,7 @@ model Mod {
   name                String
   abstract            String
   author              Author[]
+  download_count      Int?
   description         String?
   ksp_version         String?   @default("any")
   ksp_version_min     String?
@@ -26,7 +27,7 @@ model Mod {
   tags                Json?
   localizations       Json?
 
-  relationships       Relationship[] // A mod's outgoing relationships
+  relationships       Relationship[]
   replacement         ReplacedBy?
 }
 
@@ -91,11 +92,10 @@ model Relationship {
   modIdentifier String
   mod           Mod       @relation(fields: [modIdentifier], references: [identifier])
 
-  // Normal direct relation OR part of an any_of group
-  targetVersionId   Int?      // When this relationship points directly to a version
+  targetVersionId   Int?
   targetVersion     Version?      @relation(fields: [targetVersionId], references: [id])
 
-  anyOfGroupId  Int?      // If this is part of an any_of group
+  anyOfGroupId  Int?
   anyOfGroup    AnyOfGroup? @relation(fields: [anyOfGroupId], references: [id])
 
   min_version   String?

@@ -21,5 +21,6 @@ async function performGitActions() {
 }
 
 export default function scheduleGitActions() {
+  performGitActions();
   scheduleJob('*/5 * * * *', performGitActions);
 }

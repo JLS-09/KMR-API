@@ -3,7 +3,7 @@ import scheduleGitActions from "./git/gitActions";
 import mongoose from "mongoose";
 import { routes } from "./routes/user.routes";
 
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+const dbUrl = process.env.DATABASE_URL;
 
 const fastify = Fastify({
   logger: {
@@ -22,7 +22,9 @@ async function main() {
   })
 
   try {
-    await mongoose.connect(process.env.DATABASE_URL, clientOptions);
+    if (dbUrl){
+      await mongoose.connect(dbUrl);
+    }
     if (mongoose.connection.db) {
       await mongoose.connection.db.admin().command({ ping: 1 });
     }

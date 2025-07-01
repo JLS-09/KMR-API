@@ -21,7 +21,7 @@ export async function getUserById(request: FastifyRequest, reply: FastifyReply) 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
   try {
     const user = new User(request.body);
-    const result = user.save();
+    const result = await user.save();
     reply.send(result);
   } catch (error) {
     reply.status(500).send(error)

@@ -16,7 +16,6 @@
     "@types/node-schedule": "^2",
     "eslint": "^9.29.0",
     "globals": "^16.2.0",
-    "json-to-prisma-schema-convertor": "^0.1.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
@@ -25,8 +24,6 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
-    "dev": "tsx watch --env-file .env src/index.ts",
-    "migrate:dev": "prisma migrate dev",
-    "json-to-prisma": "json-to-prisma-schema-convertor convert --inputPath='./prisma/schema.json' --outputPath='./prisma/schema.prisma'"
+    "dev": "tsx watch --env-file .env src/index.ts"
   }
 }

@@ -22,7 +22,7 @@ async function main() {
   })
 
   try {
-    await mongoose.connect('mongodb+srv://julesvn:thyYZ11P61DoLlJl@kmr-db.dhjbh50.mongodb.net/?retryWrites=true&w=majority&appName=kmr-db', clientOptions);
+    await mongoose.connect(process.env.DATABASE_URL, clientOptions);
     if (mongoose.connection.db) {
       await mongoose.connection.db.admin().command({ ping: 1 });
     }
